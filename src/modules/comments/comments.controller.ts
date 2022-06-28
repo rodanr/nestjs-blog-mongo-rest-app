@@ -8,6 +8,7 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { ObjectIdValidationPipe } from 'src/common/pipes/object-id.validation.pipe';
 import { JwtAuthGuard } from '../users/jwt/jwt-auth.guard';
@@ -15,6 +16,7 @@ import { CommentsService } from './comments.service';
 import { BlogQueryDto } from './dto/blog-query.dto';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
+@ApiTags('Comments')
 @Controller('comments')
 //TODO: ADD COMMENT UPDATE and CommentEditAuthorize Guard implement
 export class CommentsController {

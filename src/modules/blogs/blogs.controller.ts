@@ -20,6 +20,8 @@ import { UpdateBlogDto } from './dto/update-blog.dto';
 import { ObjectIdValidationPipe as ObjectIdValidationPipe } from 'src/common/pipes/object-id.validation.pipe';
 import { JwtAuthGuard } from '../users/jwt/jwt-auth.guard';
 import { AuthorizeBlogGuard } from './guards/authorize-blog.guard';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('Blogs')
 @Controller('blogs')
 export class BlogsController {
   constructor(private readonly blogsService: BlogsService) {}

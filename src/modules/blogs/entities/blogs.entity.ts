@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { Document } from 'mongoose';
+
 @Schema()
 export class Blog extends Document {
   @Prop()

@@ -1,5 +1,4 @@
-import { IsString } from 'class-validator';
-import { PickType } from '@nestjs/mapped-types';
+import { PickType } from '@nestjs/swagger';
 import { CreateUserDto } from './create-user.dto';
 
 export class LoginUserDto extends PickType(CreateUserDto, [

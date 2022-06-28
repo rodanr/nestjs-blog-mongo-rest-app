@@ -24,18 +24,17 @@ export class UsersService {
   }
   signup(createUserDto: CreateUserDto) {
     const user = new this.UserModel(createUserDto);
-    return user
-      .save()
-      .then((user) => user)
-      .catch((error) => {
-        const errorKeyValue = error.keyValue;
-        if (errorKeyValue.username) {
-          throw new BadRequestException('Username already exists');
-        }
-        if (errorKeyValue.email) {
-          throw new BadRequestException('Email is already used');
-        }
-      });
+    try {
+      return user.save();
+    } catch (error) {
+      const errorKeyValue = error.keyValue;
+      if (errorKeyValue.username) {
+        throw new BadRequestException('Username already exists');
+      }
+      if (errorKeyValue.email) {
+        throw new BadRequestException('Email is already used');
+      }
+    }
   }
   async login(loginUserDto: LoginUserDto) {
     const user = await this.UserModel.findOne({
@@ -48,6 +47,7 @@ export class UsersService {
       username: user.username,
       sub: user._id,
     });
+    // can make a class and make it that type for apiResponse swagger
     return {
       msg: 'Logged in Successfully',
       jwt: jwt,
